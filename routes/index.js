@@ -10,7 +10,8 @@ exports.auth = function(req, res) {
 res.redirect('https://api.singly.com/oauth/authorize?client_id=b1f87900afe3a00ecd8a4396e9613565&redirect_uri=http://localhost:3000/authorized&service=facebook') 
 };
 
-exports.authorized = function(req, res,third) {
+exports.authorized = function(req, res) {
+    Response = res;
     var data = { 
         client_id : 'b1f87900afe3a00ecd8a4396e9613565',
         client_secret : '18e9a6a0ab8fd151599b465b387e0741',
@@ -58,11 +59,13 @@ exports.authorized = function(req, res,third) {
         tableService.insertEntity("usertable",allInfo, function(err, serverEntity) {
             if (err == null) {
                 console.log("push successful");
+             
             }
             else { 
                 tableService.updateEntity("userTable", allInfo, function(err, serverEntity) { 
                     if (err == null) { 
                         console.log("push successful");
+                        Response.render("userpage");
                         }
                     });
                 };
