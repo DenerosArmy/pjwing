@@ -22,6 +22,8 @@
   <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
+ </script>
+
   
  <script type="text/javascript">
   filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal': true},
@@ -133,6 +135,58 @@ document.getElementById('second').style.visibility = 'visible';
 
     </script>
 
+                  <script type="text/javascript" src="https://api.filepicker.io/v0/filepicker.js"></script>
+
+    <!--
+        Now we get down to the meat of the program - using filepicker.io to get a link to a file.
+        If want to learn more about the capabilities of filepicker.io, check out our documentation at
+        https://developers.filepicker.io/v0/
+    -->
+    <script type="text/javascript">
+        window.onload = function(){
+            // You've got to let filepicker.io know who you are! Your apikey and more can be found at
+            // https://developers.filepicker.io/home/
+            filepicker.setKey('kUW3Y87kQaqOFO0OhaVn');
+
+            // When you click the big button, launch the filepicker
+            document.getElementById("getLink").onclick = function(){
+                // The syntax of the getFile call is:
+                //     filepicker.getFile(mimetypes, options, callback)
+                // Here, we want any sort of file and to use a modal window
+                // This is a good place to play around with other options, etc. from the documentation
+                filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal':true}, function(url, metadata) {
+                    // Now that we have the url and some information about the file,
+                    // we show it to the user and set up the sharing links.
+                    document.getElementById("url-result").setAttribute("value", url);
+                    
+                    alert(url);
+                    
+                    document.getElementById("email-result").setAttribute("href",
+                        "mailto:?subject=A file for you: "+metadata.filename+"&body=You can grab it at "+url);
+                    document.getElementById("tweet-result").setAttribute("href",
+                        "http://twitter.com/intent/tweet?url="+encodeURIComponent(url)+
+                        "&text=Look%20at%20my%20cool%20stuff:%20"+metadata.filename);
+
+                    // Get the results section of the page
+                    var results = document.getElementById("results");
+
+                    // If the file is an image, we get really fancy and even show the thumbnail!
+                    if (metadata.type.indexOf("image/") == 0) {
+                        var img = document.createElement("img");
+                        img.setAttribute("src", url);
+                        img.setAttribute("alt", metadata.filename);
+                        img.setAttribute("title", metadata.filename);
+                        results.appendChild(img);
+                    }
+                    // Show the results (they were hidden before)
+                    results.style.display = "block";
+                });
+            };
+        };
+    </script>
+
+
+
 
 				<!--  <link rel="shortcut icon" href="favicon.ico">  -->
 	</head>
@@ -212,8 +266,12 @@ document.getElementById('second').style.visibility = 'visible';
               <li class="nav-header">Thing 1</li>
               <li class="nav-header">Thing 2</li>
 
+            <button id="getLink" class="btn btn-large btn-primary btn-jumbo">Get Link</button>
 
-          </div><!--/.well -->
+<button class="btn btn-primary btn-large" data-name="complex get" onClick="filepicker.getFile('*/*', {'multiple': true, 'modal':true}, function(response){ $('#multiResult').html(JSON.stringify(response))});">Run Example</button>
+<div id="url-result"> </div>
+
+
 
         </div><!--/span-->
 
