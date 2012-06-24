@@ -1,0 +1,29 @@
+{
+	"instructor": "Te-Wen Liu ", 
+	"class_name": "WiSE Seminar: Women in Science and Engineering", 
+	"resources": "https://bspace.berkeley.edu/portal/site/8068949e-61ad-43b2-bb2f-9a1266e7caec"
+}
+
+{
+	"instructor": "Tom Magrino", 
+	"class_name": "CS61A: Structure and Interpretation of Computer Programs",  
+	"resources": "http://www-inst.eecs.berkeley.edu/~cs61a/su12/index.html#resources"
+}
+
+{
+	"instructor": "Michel Maharbiz", 
+	"class_name": "EE40: Introduction to Microelectronic Circuits", 
+	"resources": "ee40"
+}
+
+{
+	"instructor": "Carl Mason", 
+	"class_name": "Demog145AC: American Immigration", 
+	"resources": "http://www.demog.berkeley.edu/145/"
+}
+
+{
+	"instructor": "", 
+	"class_name": "CS61B: Data Structures", 
+	"resources": "http://www.cs.berkeley.edu/~jrs/61b/hw/index.html"
+}
