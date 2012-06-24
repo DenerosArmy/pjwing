@@ -115,20 +115,26 @@ function changeText(txt){
 
         $(document).ready(function() {
 
-$('#fistpage').load('/bye.html');
+$('#fistpage').load('http://projectwing2.cloudapp.net:9001/p/{{etherpad}}');
 
 document.getElementById('first').style.width = '100%'; 
 
         });    
         
         function addsecond(){
-var active = 0;
+var active;
+if (active != 0) {
 
         document.getElementById('first').style.width = ''; 
 $('#secondpage').load('/herro.html');
 
 document.getElementById('second').style.visibility = 'visible'; 
 var active = 1;
+}
+else {
+removesecond();
+}
+
 
 }
         function removesecond(){
@@ -276,7 +282,7 @@ document.getElementById('second').style.visibility = 'hidden';
 
           <button class="btn btn-large btn-primary"> View</button>
           
-        <button id="journal" onclick="javascript:addsecond();"  class="btn btn-large btn-primary"> Journal</button>
+        <button id="journal" onclick="javascript:addsecond();"  class="btn btn-large btn-primary">Notes</button>
 
 <div id="url-result"> </div>
                               </div>
