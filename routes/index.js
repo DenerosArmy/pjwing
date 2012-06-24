@@ -2,7 +2,7 @@ var request = require("request");
 var querystring = require("querystring");
 var TABLENAME = "usertable";
 var azure = require("azure");
-
+var exec = require("child_process").exec;
 exports.index = function(req, res){
   res.render('index', { title: 'Express' })
 };
@@ -16,8 +16,22 @@ exports.auth = function(req, res) {
 };
 
 
+
 exports.app = function(req, res) { 
-    res.render('appgen');
+        
+    exec('python services/match_rooms.py ee40 "{\'id\':\'Asshole\'}"', function(err, stdout, stderr) {
+        var tableService = azure.createTableService();
+        var object = JSON.parse(stdout); 
+        var rowKey = object['Asshole'];
+        tableService.queryEntity("roomtable","ee40",rowKey, function(err, Entity) {
+            var tokbox = Entity.tokbox;
+            var etherpad = Entity.etherpad;
+            console.log(tokbox);
+            console.log(etherpad);
+            res.render("appgen",{tokboxSession:tokbox,etherPadSession:etherpad});
+        });
+
+    });
 };
 
 exports.user = function(req, res) {

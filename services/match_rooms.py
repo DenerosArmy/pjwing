@@ -7,7 +7,7 @@ from tokbox import *
 
 
 def get_loadfactor():
-    print occupied_spots / available_space
+    #print occupied_spots / available_space
     if available_space == 0:
         return 1.0
     return occupied_spots / available_space
@@ -65,11 +65,11 @@ available_space = len(rooms) * 6.0
 response_dict = {}
 
 for user in user_dicts:
-    print("Load factor: {0}".format(get_loadfactor()))
+   # print("Load factor: {0}".format(get_loadfactor()))
     if get_loadfactor() > 0.7:
         n_room = new_room()
-        print "Creating new room..."
-        print (n_room)
+    #    print "Creating new room..."
+    #    print (n_room)
         table_service.insert_entity('roomtable', n_room)
         available_space += 6.0
         room_to_users[n_room['RowKey']] = 0
@@ -79,7 +79,7 @@ for user in user_dicts:
     room_to_users[room_key] += 1
     occupied_spots += 1
 
-print(response_dict)
+print(json.dumps(response_dict))
 messages = queue_service.put_message('sendusers', str(response_dict))
 
 
