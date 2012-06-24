@@ -36,6 +36,7 @@ app.configure('production', function(){
 
 // Routes
 app.get('/',routes.index);
+app.get('/user/:id/:token',routes.user);
 app.get('/auth',routes.auth); 
 app.get('/authorized', routes.authorized);
 app.get('/appgen', routes.app);

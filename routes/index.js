@@ -12,6 +12,9 @@ res.redirect('https://api.singly.com/oauth/authorize?client_id=b1f87900afe3a00ec
 exports.app = function(req, res) { 
     res.render('appgen');
 };
+exports.user = function(req, res) {
+    console.log(req.params);
+}
 exports.authorized = function(req, res) {
     Response = res;
     var data = { 
