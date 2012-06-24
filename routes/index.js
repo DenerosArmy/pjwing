@@ -19,19 +19,7 @@ exports.auth = function(req, res) {
 
 exports.app = function(req, res) { 
         
-    exec('python services/match_rooms.py ee40 "{\'id\':\'Asshole\'}"', function(err, stdout, stderr) {
-        var tableService = azure.createTableService();
-        var object = JSON.parse(stdout); 
-        var rowKey = object['Asshole'];
-        tableService.queryEntity("roomtable","ee40",rowKey, function(err, Entity) {
-            var tokbox = Entity.tokbox;
-            var etherpad = Entity.etherpad;
-            console.log(tokbox);
-            console.log(etherpad);
-            res.render("appgen",{tokboxSession:tokbox,etherPadSession:etherpad});
-        });
-
-    });
+    res.render("appgen");
 };
 
 exports.user = function(req, res) {
