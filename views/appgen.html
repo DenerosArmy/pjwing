@@ -248,7 +248,7 @@ document.getElementById('second').style.visibility = 'visible';
           </div>
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="overflow:scroll;">
       <div class="row-fluid">
         <div class="span3">
 
@@ -266,22 +266,23 @@ document.getElementById('second').style.visibility = 'visible';
               <li class="nav-header">Thing 1</li>
               <li class="nav-header">Thing 2</li>
 
-            <button id="getLink" class="btn btn-large btn-primary btn-jumbo">Get Link</button>
-
-<button class="btn btn-primary btn-large" data-name="complex get" onClick="filepicker.getFile('*/*', {'multiple': true, 'modal':true}, function(response){ $('#multiResult').html(JSON.stringify(response))});">Run Example</button>
-<div id="url-result"> </div>
-
           </div>
+                    <div class="well span2" align="center" style="background:#333333; position:absolute;bottom: 35px;">
+            <button id="getLink" class="btn btn-large btn-primary">Files</button>
+
+<div id="url-result"> </div>
+                    </div>
         </div><!--/span-->
+
 
         <div class="span9">
 
           <div class="row-fluid">
-            <div class="span6" id="first">
+            <div class="span6" id="first" style="overflow:scroll;">
 
-              <div id="fistpage" frameborder="0"></div>
+              <div id="fistpage" height="100%"  frameborder="0"></div>
             </div><!--/span-->
-                        <div class="span6" id="second">
+                        <div class="span6" id="second" style="overflow:scroll;">
               <div id="secondpage" frameborder="0"></div>
             </div><!--/span-->
 
