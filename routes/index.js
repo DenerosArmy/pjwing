@@ -9,7 +9,9 @@ exports.index = function(req, res){
 exports.auth = function(req, res) {   
 res.redirect('https://api.singly.com/oauth/authorize?client_id=b1f87900afe3a00ecd8a4396e9613565&redirect_uri=http://localhost:3000/authorized&service=facebook') 
 };
-
+exports.app = function(req, res) { 
+    res.render('appgen');
+};
 exports.authorized = function(req, res) {
     Response = res;
     var data = { 
@@ -54,8 +56,17 @@ exports.authorized = function(req, res) {
         
         allInfo['PartitionKey'] = "users";
         allInfo['authBody'] = JSON.stringify(information['authBody']); 
-        allInfo['info'] = JSON.stringify(information);
+        var education = information[0]['data'].education;
+        information['profilePicture'] = "http://graph.facebook.com/"+information[0]['data'].id+"/picture";
+        for (each in education) {
+            if (education[each].type == "University" || education[each].type == "College") { 
+                var college  = education[each].school.name; 
+                    
+            };
+
+        };
         console.log(information);
+        allInfo['info'] = JSON.stringify(information);
         tableService.insertEntity("usertable",allInfo, function(err, serverEntity) {
             if (err == null) {
                 console.log("push successful");
@@ -65,7 +76,7 @@ exports.authorized = function(req, res) {
                 tableService.updateEntity("userTable", allInfo, function(err, serverEntity) { 
                     if (err == null) { 
                         console.log("push successful");
-                        Response.render("userpage");
+                        Response.render("userpage", {College: college});
                         }
                     });
                 };
@@ -75,6 +86,7 @@ exports.authorized = function(req, res) {
     };
                
                     
-                    
+
+
                     
 
