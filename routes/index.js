@@ -13,7 +13,13 @@ exports.app = function(req, res) {
     res.render('appgen');
 };
 exports.user = function(req, res) {
-    console.log(req.params);
+    var id = req.params['id'];
+    var token = req.params['token'];
+    var tableService = azure.createTableService();
+    tableService.queryEntity("usertable","users",id,queriedEntity);
+    function queriedEntity(err, Entity) {
+        console.log(Entity);
+    };
 }
 exports.authorized = function(req, res) {
     Response = res;
