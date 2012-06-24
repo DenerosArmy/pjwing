@@ -17,9 +17,6 @@ exports.auth = function(req, res) {
 
 
 exports.app = function(req, res) { 
-    //var tokbox_key = req.params['tokbox']
-    //var etherpad_key = req.params['etherpad']
-    //res.render('appgen', { tokbox: tokbox_key, etherpad: etherpad_key});
     res.render('appgen');
 };
 
