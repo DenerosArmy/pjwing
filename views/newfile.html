@@ -1,0 +1,16 @@
+ <!-- Adds the Filepicker.io javascript library to the page -->
+ <script src="https://api.filepicker.io/v0/filepicker.js"></script>
+ <script type="text/javascript">
+     //Seting up Filepicker.io with your api key
+     filepicker.setKey('kUW3Y87kQaqOFO0OhaVn');
+
+     //Get your first file - How exciting!
+     //This call asks for any type of file, and makes an alert window stating
+     //the name of the file and where to download it from.
+     filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal': true},
+         function(url, metadata){
+             alert('You just uploaded '+metadata.filename+'! '+
+                   'You can access the file at '+url);
+         }
+     );
+ </script>
