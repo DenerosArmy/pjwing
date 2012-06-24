@@ -1,58 +1,188 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
- <head> 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-    <script type="text/javascript" src="/javascripts/jquery.facebook.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $.fbInit('FACEBOOK_API_KEY');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Wing">
 
-        // FB Connect action
-        $('#fb-connect').bind('click', function () {
-          $.fbConnect({'include': ['first_name', 'last_name', 'name', 'pic']}, function (fbSession) {
-            $('.not_authenticated').hide();
-            $('.authenticated').show();
-            $('#fb-first_name').html(fbSession.first_name);
-          });
-          return false;
-        });
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/wing.css" rel="stylesheet">
 
-        // FB Logout action
-        $('#fb-logout').bind('click', function () {
-          $.fbLogout(function () {
-            $('.authenticated').hide();
-            $('.not_authenticated').show();
-          });
-          return false;
-        });
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Delius+Swash+Caps" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel='stylesheet' type='text/css'>
 
-        // Check whether we're logged in and arrange page accordingly
-        $.fbIsAuthenticated(function (fbSession) {
-          // Authenticated!
-          $('.authenticated').show();
-          $('#fb-first_name').html(fbSession.first_name);
-        }, function () {
-          // Not authenticated
-          $('.not_authenticated').show();
-        });
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-      });
-    </script>
-  </head>
-
-  <body>
-    <div id="fb-root"></div>
-    <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
-
-    <div id="my-account">
-      <div class="authenticated" style="display: none">
-        Hi there <span id="fb-first_name"></span>!
-        <a href="#" id="fb-logout">Logout</a>
-      </div>
-      <div class="not_authenticated" style="display: none">
-        <a href="#" id="fb-connect">Connect with Facebook</a>
-      </div>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a href="index.html" class="brand">Project Wing</a>
+                    <ul class="nav">
+                        <li><a href="#">Home</a></li>
+                        <li class="active"><a href="#">Login with Facebook</a></li>
+                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="feature span12">
+            <h2 class="motto">Grades. Life. Friends. <strong>Wing</strong>.</h2>
+            <h3 class="subheader">Never before has collaborating online with friends been so awesome.</h3>
+            <img id="feature-screenshot" src="img/pics/feature.png" alt="screenshot" />
+        </div>
     </div>
-  </body> 
+    <div class="row">
+        <div class="span12 graded center">
+            <p>You'll be amazed with Wing. Never before has studying online with friends been so awesome.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2><strong>Features</strong> you'll really dig.</h2>
+    <h3 class="subheader">Everything you need to study online.</h3>
+    <div class="row">
+        <div class="span12">
+        <ul class="thumbnails">
+            <li class="span3">
+                <div class="thumbnail">
+                    <span>Online Video</span>
+                    <img src="img/pics/placeholder_260.png" width="260" height="180" alt="">
+                    
+                </div>
+            </li>
+            <li class="span3">
+                <div class="thumbnail">
+                    <span>File Collaboration</span>
+                    <img src="img/pics/placeholder_260.png" width="260" height="180" alt="">
+                </a>
+            </li>
+            <li class="span3">
+                <div class="thumbnail">
+                    <span>Realtime Text Editing</span>
+                    <img src="img/pics/placeholder_260.png" width="260" height="180" alt="">
+                </div>
+            </li>
+            <li class="span3">
+                <div class="thumbnail">
+                    <span>iOS Support</span>
+                    <img src="img/pics/placeholder_260.png" width="260" height="180" alt="">
+                </div>
+            </li>
+        </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="span12 box drop-shadow">
+            <div class="row">
+                <article class="span6 offset1">
+                    <h3>Online Video.</h3>
+                    <p>Studying goes better when you can see each other. We're using OpenTok for realtime video, so its like your meeting face to face. 
+                    </p>
+                </article>
+                <div class="span4">
+                    <img src="img/pics/placeholder_200.png" alt="placeholder" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4 offset1">
+                    <img src="img/pics/placeholder_200.png" alt="placeholder" />
+                </div>
+                <article class="span6">
+                    <h3>Mobile.</h3>
+                    <p>Collaborate on the go. Study or Review your files as you walk to a big test. Take a picture and store it online. And it's so easy.</p>
+                </article>
+            </div>
+            <div class="row">
+                <article class="span6 offset1">
+                    <h3>Files.</h3>
+                    <p>Look at class files that are prepared for you and collaborate. Upload your own files and share it. </p>
+                </article>
+                <div class="span4">
+                    <img src="img/pics/placeholder_200.png" alt="placeholder" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+<div class="container">
+    <h2> <strong>pricing</strong> table.</h2>
+    <div class="row pricing">
+        <div class="span4">&nbsp;
+        </div>
+
+        <div class="span3" align="center" style="margin-left:45px;">
+            <div class="spot">Try<br/>Now!</div>
+            <div class="well highlighted">
+                <h3>Standard</h3>
+                <ul>
+                    <li>5 users per room</li>
+                    <li>Unlimited Rooms </li>
+                    <li>5GB storage</li>
+                </ul>
+                <h4>Free!</h4>
+            </div>
+        </div>
+                <div class="span4">&nbsp;
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="span12 center graded">
+            <a href="#" class="signup">Sign up now</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h3 class="subheader">Keep in touch.</h3>
+    <div class="row">
+        <div class="span8">
+            <h4>About us</h4>
+            <p>Project Wing was created at AngelHack 2012 so we can take advantage of the latest technologies to aid students and professionals who rely on collaboration.</p>
+            <p></p>
+            
+        </div>
+        <div class="span4">
+            
+            <form class="form-horizontal">
+                <h4>Sign up for the newsletter</h4>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-envelope"></i></span><input type="text" id="inputIcon" class="span2" placeholder="Email address">
+                </div>
+                    
+                <button class="btn">News Letter</button>
+            </form>
+            
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="span12">
+            <ul class="links">
+                <li><a href="http://twitter.com/zengrichie"><img src="img/icons/twitter.png" alt="twitter" /></a></li>
+                <li><a href="https://www.facebook.com/vaishaal"><img src="img/icons/facebook.png" alt="fb" /></a></li>
+                <li><a href="mailto:vaishaal@berkeley.edu">Support</a></li>
+                <li><a href="mailto:vaishaal@berkeley.edu">Privacy Policy</a></li>
+                <li><a href="mailto:vaishaal@berkeley.edu">Jobs</a></li>
+                <li><a href="mailto:vaishaal@berkeley.edu">Contact</a></li>
+            </ul>           
+        </div>
+    </div>
+         
+</div>
+
+</body>
 </html>
+
+<!-- Localized -->
