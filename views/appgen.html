@@ -20,7 +20,7 @@
             <script src="http://code.jquery.com/jquery-latest.js"></script>
 
   <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
  </script>
 
@@ -123,14 +123,24 @@ document.getElementById('first').style.width = '100%';
         });    
         
         function addsecond(){
+var active = 0;
+
         document.getElementById('first').style.width = ''; 
 $('#secondpage').load('herro.html');
 
 document.getElementById('second').style.visibility = 'visible'; 
+var active = 1;
+
+}
+        function removesecond(){
+        document.getElementById('first').style.width = '100%'; 
+
+document.getElementById('second').style.visibility = 'hidden'; 
 
 
 
 }
+
 
 
     </script>
@@ -262,9 +272,12 @@ document.getElementById('second').style.visibility = 'visible';
 
           </div><!--/.well -->
           
-                              <div class="well" align="center" style="background:#333333;">
+    <div class="well" align="center" style="background:#333333;">
             <button id="getLink" class="btn btn-large btn-primary">Files</button>
-            <button id="journal" onclick="javascript:addsecond();" class="btn btn-large btn-primary">Add Journal</button>
+
+          <button class="btn btn-large btn-primary">Change View</button>
+          
+        <button id="journal" onclick="javascript:addsecond();"  class="btn btn-large btn-primary"> Journal</button>
 
 <div id="url-result"> </div>
                               </div>
@@ -311,7 +324,6 @@ document.getElementById('second').style.visibility = 'visible';
 	<!-- The javascript -->
 	<script src="assets/js/bootstrap.collapse.js"></script>
 	<script src="assets/js/bootstrap-modal.js"></script>
-	<script src="assets/js/bootstrap-dropdown.js"></script>
 	<script src="assets/js/bootstrap-button.js"></script>
 	<script src="assets/js/bootstrap-tab.js"></script>
 	<script src="assets/js/bootstrap-alert.js"></script>
