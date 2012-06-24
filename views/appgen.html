@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -15,50 +16,41 @@
 		<!-- Le styles -->
 		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<link href="/assets/css/wing.css" rel="stylesheet">
-            <script src="http://code.jquery.com/jquery-latest.js"></script>
+		<link href="/assets/css/jigowatt.min.css" rel="stylesheet">
+		<link href="/assets/css/goalhawkcustom.css" rel="stylesheet">
+		  <script src="http://code.jquery.com/jquery-latest.js"></script>
 
   <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
- </script>
+  <script type="text/javascript">
 
-  
- <script type="text/javascript">
-  filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal': true},
-         function(url, metadata){
-             alert('You just uploaded '+metadata.filename+'! '+
-                   'You can access the file at '+url);
-         }
-     );
-
-    var apiKey = '14255491';    
-    var sessionId = '2_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTA0LTE1IDAwOjM1OjA1LjU0NTUwNyswMDowMH4wLjMxNjA0NjQ5NjQzNX4'
+    var apiKey = '14487352';
+    var sessionId = '2_MX4xNDI2MDY1Mn5-MjAxMi0wNi0yNCAxODoxNTo1NS41MzYwNDYrMDA6MDB-MC45NjI5MzUxMDg1Mjh-' 
     var token = 'devtoken';           
-     
-    TB.setLogLevel(TB.DEBUG);     
- 
-    var session = TB.initSession(sessionId);      
-    session.addEventListener('sessionConnected', sessionConnectedHandler);
-    session.addEventListener('streamCreated', streamCreatedHandler);      
-    session.connect(apiKey, token);
- 
-    var publisher;
-     var publisher2;
+     
+    TB.setLogLevel(TB.DEBUG);     
+ 
+    var session = TB.initSession(sessionId);      
+    session.addEventListener('sessionConnected', sessionConnectedHandler);
+    session.addEventListener('streamCreated', streamCreatedHandler);      
+    session.connect(apiKey, token);
+ 
+    var publisher;
+     var publisher2;
 
-    function sessionConnectedHandler(event) {
-      publisher = session.publish('myPublisherDiv');
+    function sessionConnectedHandler(event) {
+      publisher = session.publish('myPublisherDiv');
 
-      // Subscribe to streams that were in the session when we connected
-      subscribeToStreams(event.streams);
-    }
-     
-    function streamCreatedHandler(event) {
-      // Subscribe to any new streams that are created
+      // Subscribe to streams that were in the session when we connected
+      subscribeToStreams(event.streams);
+    }
+     
+    function streamCreatedHandler(event) {
+      // Subscribe to any new streams that are created
 
-      subscribeToStreams(event.streams);
-    }
-     					
+      subscribeToStreams(event.streams);
+    }
+     					
 
 function publisherResizeHandler(event) {
     newWidth = event.widthTo;
@@ -66,28 +58,28 @@ function publisherResizeHandler(event) {
     // Modify the UI based on the new dimensions of the publisher 
 }
 
-    function subscribeToStreams(streams) {
-      for (var i = 0; i < streams.length; i++) {
-        // Make sure we don't subscribe to ourself
-        if (streams[i].connection.connectionId == session.connection.connectionId) {
-          return;
-        }
- 
-        // Create the div to put the subscriber element in to
-        var div = document.createElement('div');
-        div.setAttribute('id', 'stream' + streams[i].streamId);
+    function subscribeToStreams(streams) {
+      for (var i = 0; i < streams.length; i++) {
+        // Make sure we don't subscribe to ourself
+        if (streams[i].connection.connectionId == session.connection.connectionId) {
+          return;
+        }
+ 
+        // Create the div to put the subscriber element in to
+        var div = document.createElement('div');
+        div.setAttribute('id', 'stream' + streams[i].streamId);
 		console.log( document.getElementById('test2') );
 	//	document.getElementById("test2")[0].appendChild('div'); //append new div to another 
-	//	$('#test2').append('div');
+	//	$('/home/test2').append('div');
 		var pele = document.getElementById("test2");
 		pele.appendChild(div);
 
 
 
-        // Subscribe to the stream
-        session.subscribe(streams[i], div.id);
+        // Subscribe to the stream
+        session.subscribe(streams[i], div.id);
 
-      }
+      }
 
 var div = document.createElement('div');
 div.setAttribute('id', 'publisher');
@@ -103,104 +95,13 @@ function publisherResizeHandler(event) {
     // Modify the UI based on the new dimensions of the publisher 
 }
 
-    }
-  </script>
+    }
+  </script>
 <script type="text/javascript">
 function changeText(txt){
     document.getElementById('freetitle').innerHTML = txt;
 }
 </script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function() {
-
-$('#fistpage').load('http://projectwing2.cloudapp.net:9001/p/{{etherpad}}');
-
-document.getElementById('first').style.width = '100%'; 
-
-        });    
-        
-        function addsecond(){
-var active;
-if (active != 0) {
-
-        document.getElementById('first').style.width = ''; 
-$('#secondpage').load('/herro.html');
-
-document.getElementById('second').style.visibility = 'visible'; 
-var active = 1;
-}
-else {
-removesecond();
-}
-
-
-}
-        function removesecond(){
-        document.getElementById('first').style.width = '100%'; 
-
-document.getElementById('second').style.visibility = 'hidden'; 
-
-
-
-}
-
-
-
-    </script>
-
-                  <script type="text/javascript" src="https://api.filepicker.io/v0/filepicker.js"></script>
-
-    <!--
-        Now we get down to the meat of the program - using filepicker.io to get a link to a file.
-        If want to learn more about the capabilities of filepicker.io, check out our documentation at
-        https://developers.filepicker.io/v0/
-    -->
-    <script type="text/javascript">
-        window.onload = function(){
-            // You've got to let filepicker.io know who you are! Your apikey and more can be found at
-            // https://developers.filepicker.io/home/
-            filepicker.setKey('kUW3Y87kQaqOFO0OhaVn');
-
-            // When you click the big button, launch the filepicker
-            document.getElementById("getLink").onclick = function(){
-                // The syntax of the getFile call is:
-                //     filepicker.getFile(mimetypes, options, callback)
-                // Here, we want any sort of file and to use a modal window
-                // This is a good place to play around with other options, etc. from the documentation
-                filepicker.getFile(filepicker.MIMETYPES.ALL, {'modal':true}, function(url, metadata) {
-                    // Now that we have the url and some information about the file,
-                    // we show it to the user and set up the sharing links.
-                    document.getElementById("url-result").setAttribute("value", url);
-                    
-                    alert(url);
-                    
-                    document.getElementById("email-result").setAttribute("href",
-                        "mailto:?subject=A file for you: "+metadata.filename+"&body=You can grab it at "+url);
-                    document.getElementById("tweet-result").setAttribute("href",
-                        "http://twitter.com/intent/tweet?url="+encodeURIComponent(url)+
-                        "&text=Look%20at%20my%20cool%20stuff:%20"+metadata.filename);
-
-                    // Get the results section of the page
-                    var results = document.getElementById("results");
-
-                    // If the file is an image, we get really fancy and even show the thumbnail!
-                    if (metadata.type.indexOf("image/") == 0) {
-                        var img = document.createElement("img");
-                        img.setAttribute("src", url);
-                        img.setAttribute("alt", metadata.filename);
-                        img.setAttribute("title", metadata.filename);
-                        results.appendChild(img);
-                    }
-                    // Show the results (they were hidden before)
-                    results.style.display = "block";
-                });
-            };
-        };
-    </script>
-
-
 
 
 				<!--  <link rel="shortcut icon" href="favicon.ico">  -->
@@ -223,16 +124,20 @@ document.getElementById('second').style.visibility = 'hidden';
 					<span class="icon-bar"></span>
 				</a>
 
-				<a class="brand" href="index.html">
-			<logo >Project Wing</logo>				
+				<a class="brand" href="home.php">
+			<logo>Project Wing</logo>	<!-- <img src="/assets/i/ghlogo.png" width="90"> --> 				
 				</a>
 				
 						<div class="nav-collapse">
 					<ul class="nav" id="findme">
-						<!--<li><a href="#">Home</a></li>-->
+						<li><a href="/home/">Home</a></li>
+						<li><a href="/home/">Classes</a></li>
+						<li><a href="/home/">About</a></li>
+
+						<li><a href="/home/">Blog</a></li>
 					</ul>
 		<ul class="nav  pull-right">
-			<li><a href="#" class="signup-link"><strong>You are studying! </strong> &raquo; </a></li> <li><a data-toggle="modal" class="signup-link" href="#myModal" ><strong> Invite</strong> your friends</a>
+			<li><a href="/home/" class="signup-link"><strong>You are studying! </strong> &raquo; </a></li> <li><a data-toggle="modal" class="signup-link" href="#myModal" ><strong> Invite</strong> your friends</a>
 </li>
 
 		</ul>
@@ -243,69 +148,64 @@ document.getElementById('second').style.visibility = 'hidden';
 	</div><!-- /navbar-wrapper -->
 
 <!-- Main content================================================== -->
-
-<!-- Invite your friends modal -->
           <div id="myModal" class="modal hide fade">
             <div class="modal-header">
               <a class="close" data-dismiss="modal" >&times;</a>
-              <h3>Invite your friends</h3>
+              <h3>Share this link</h3>
             </div>
             <div class="modal-body">
-              <h4>Share this url</h4>
-              <p> URL HERE .</p>
+              <h4>Paste this link to a friend so they can join you!</h4>
+              </br>
+              <p>http://169.229.99.129:1338/app/7641440</p>
+              </br>
 
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
-                        <a href="#" class="btn btn-primary" data-dismiss="modal" >Share</a>
+              <a href="/home/" class="btn" data-dismiss="modal" >Close</a>
+                        <a href="/home/" class="btn btn-primary" data-dismiss="modal" >Share</a>
 
             </div>
           </div>
 
 
-          <div class="container" style="margin-top:50px">
+<div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
 
-          <div class="well" style="background:#333333;">
-                <div id="myPublisherDiv">You</div>
-                <div id="test2">1</div>
-                <div id="test2">2</div>
-                <div id="test2">3</div>
-                <div id="test2">4</div>
+          <div class="well sidebar-nav">
 
+            <ul class="nav nav-list">
+              <li class="nav-header">Tools</li>
+              <li class="active"><a target="freeform" onclick='changeText("Your Notes")' href="http://willyou.typewith.me/p/7641441.0">Your Notes</a></li>
+		<!--<li><a target="freeform" onclick='changeText("Richie")' href="http://willyou.typewith.me/p/richielusdalasda">Richie</a></li>-->
+		<!--<li><a target="freeform" onclick='changeText("Vaishaal")' href="http://willyou.typewith.me/p/sumukhlusdalasda">Sumukh</a></li>-->
+		<li><a target="freeform" onclick='changeText("Whiteboard")' href="http://api.dabbleboard.com/api/iframe?dev_id=sumukh1&user_id=cs61&user_key=cs61&drawing_user_id=cs61&drawing_id=0&drawing_key=cs61&width=640&height=480">Whiteboard</a></li>
+	    <li class="nav-header">Files</li>
+		<!--<li><a target="freeform" onclick='changeText("CS61A P/S 1")' href="http://www-inst.eecs.berkeley.edu/~cs61a/sp12/hw/hw1.html">Problem Set 1</a></li>-->
+		<!--<li><a target="freeform" onclick='changeText("SICP Ch. 1")' href="http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/functions.html">Textbook</a></li>-->
+		
+
+
+          <div id="myPublisherDiv"></div>
+    <div id="test2"></div>
+
+            </ul>
 
           </div><!--/.well -->
-          
-    <div class="well" align="center" style="background:#333333;">
-            <button id="getLink" class="btn btn-large btn-primary">Files</button>
 
-          <button class="btn btn-large btn-primary"> View</button>
-          
-        <button id="journal" onclick="javascript:addsecond();"  class="btn btn-large btn-primary">Notes</button>
-
-<div id="url-result"> </div>
-                              </div>
-                              
-                              
-          <div class="well" style="background:#333333;">
-          Activity Log
-              <li class="nav-header">Thing 1</li>
-              <li class="nav-header">Thing 2</li>
-
-          </div>
         </div><!--/span-->
-
 
         <div class="span9">
 
           <div class="row-fluid">
-            <div class="span6" id="first">
+            <div class="span6">
 
-              <div id="fistpage" height="100%"  frameborder="0"></div>
+              <h2><div id="freetitle">Your Workspace</div></h2>
+              <iframe name="freeform" src="http://willyou.typewith.me/p/7641441.0"  width="100%" height="600px" frameborder="0"></iframe>
             </div><!--/span-->
-                        <div class="span6" id="second">
-              <div id="secondpage" frameborder="0"></div>
+                        <div class="span6">
+              <h2>The Group's Space</h2>
+              <iframe src="http://willyou.typewith.me/p/7641440"  width="100%" height="600px" frameborder="0"></iframe>
             </div><!--/span-->
 
             </div><!--/span-->
@@ -323,12 +223,25 @@ document.getElementById('second').style.visibility = 'hidden';
 	</div> <!-- /.span9 -->
 	</div> <!-- /.row-fluid -->
 </body>
+	<footer>
+	<div class="footer">
+			<hr class="soften">
+
+			<div id="logo"> 
+		<a href="/home/">&copy; <logo>Project Wing</logo> - The Big Hack - Cal</a>  
+		</div> 
+				<div id="Group2"><br> <a href="/home/privacy">Privacy </a>  |  <a href="#">Blog</a> 	</div>
+</div>
+	</footer>
+
 </div> <!-- /.container-fluid -->
 
 </div> <!-- the wrapper layer -->
 	<!-- The javascript -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="/assets/js/bootstrap.collapse.js"></script>
 	<script src="/assets/js/bootstrap-modal.js"></script>
+	<script src="/assets/js/bootstrap-dropdown.js"></script>
 	<script src="/assets/js/bootstrap-button.js"></script>
 	<script src="/assets/js/bootstrap-tab.js"></script>
 	<script src="/assets/js/bootstrap-alert.js"></script>
@@ -338,3 +251,4 @@ document.getElementById('second').style.visibility = 'hidden';
 
   </body>
 </html>
+
