@@ -12,6 +12,15 @@ res.redirect('https://api.singly.com/oauth/authorize?client_id=b1f87900afe3a00ec
 exports.app = function(req, res) { 
     res.render('appgen');
 };
+exports.user = function(req, res) {
+    var id = req.params['id'];
+    var token = req.params['token'];
+    var tableService = azure.createTableService();
+    tableService.queryEntity("usertable","users",id,queriedEntity);
+    function queriedEntity(err, Entity) {
+        console.log(Entity);
+    };
+}
 exports.authorized = function(req, res) {
     Response = res;
     var data = { 
