@@ -2,16 +2,27 @@ var request = require("request");
 var querystring = require("querystring");
 var TABLENAME = "usertable";
 var azure = require("azure");
+
 exports.index = function(req, res){
   res.render('index', { title: 'Express' })
 };
 
-exports.auth = function(req, res) {   
-res.redirect('https://api.singly.com/oauth/authorize?client_id=b1f87900afe3a00ecd8a4396e9613565&redirect_uri=http://localhost:3000/authorized&service=facebook') 
+exports.classpage = function(req, res) {
+    res.render('classpage');
 };
+
+exports.auth = function(req, res) {   
+    res.redirect('https://api.singly.com/oauth/authorize?client_id=b1f87900afe3a00ecd8a4396e9613565&redirect_uri=http://localhost:3000/authorized&service=facebook')
+};
+
+
 exports.app = function(req, res) { 
+    //var tokbox_key = req.params['tokbox']
+    //var etherpad_key = req.params['etherpad']
+    //res.render('appgen', { tokbox: tokbox_key, etherpad: etherpad_key});
     res.render('appgen');
 };
+
 exports.user = function(req, res) {
     var id = req.params['id'];
     var token = req.params['token'];
@@ -21,6 +32,7 @@ exports.user = function(req, res) {
         console.log(Entity);
     };
 }
+
 exports.authorized = function(req, res) {
     Response = res;
     var data = { 
@@ -59,7 +71,7 @@ exports.authorized = function(req, res) {
     };
 
     function addOrUpdateUserTable(information) { 
-        var tableService = azure.createTableService()
+        var tableService = azure.createTableService('portalvhdskh6mzj3bsksr4', '7adiqZaar7LYZmaFkLk4HnOuAuw+PlY8i8WNLTjYLOPNJvNe3ypn5nh6GYRw6akhsAjlFkJuEDzxtr3sk7JCrA==')
         var allInfo = {} 
         allInfo['RowKey'] = information['authBody']['account'];
         
@@ -75,14 +87,17 @@ exports.authorized = function(req, res) {
 
         };
         console.log(information);
+        console.log(tableService);
         allInfo['info'] = JSON.stringify(information);
         tableService.insertEntity("usertable",allInfo, function(err, serverEntity) {
+            console.log(err);
             if (err == null) {
                 console.log("push successful");
-             
+                Response.render("userpage", {College: college});
             }
             else { 
                 tableService.updateEntity("userTable", allInfo, function(err, serverEntity) { 
+                    console.log(err);
                     if (err == null) { 
                         console.log("push successful");
                         Response.render("userpage", {College: college});
@@ -90,12 +105,4 @@ exports.authorized = function(req, res) {
                     });
                 };
             });
-
-
     };
-               
-                    
-
-
-                    
-
