@@ -1,1 +1,1 @@
-python match_rooms.py cs61a "{'id':'23432'}"
+python match_rooms.py ee40 "{'id':'23432'}"
