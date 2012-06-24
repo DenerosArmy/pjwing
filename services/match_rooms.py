@@ -3,15 +3,29 @@ import json
 import time
 
 from azure.storage import *
+from tokbox import *
 
 
 def get_loadfactor():
+    print occupied_spots / available_space
     if available_space == 0:
         return 1.0
-    return occupied_spots/available_space
+    return occupied_spots / available_space
+
 
 def new_room():
-    return {"PartitionKey":course, "RowKey":str(int(time.time() * 1000)), "users": 0}
+    row_key = str(int(time.time() * 1000))
+    etherpad = course + "_" + row_key
+    return {"PartitionKey": course,
+            "RowKey": row_key,
+            "users": 0,
+            "tokbox": create_session(),
+            "etherpad": etherpad}
+
+
+def create_new_room():
+    """ Function for outside programs to call to easily create a new room. """
+    new_room = new_room()
 
 
 parser = argparse.ArgumentParser(description='Process a bunch of user requests.')
@@ -22,9 +36,6 @@ parser.add_argument('users', metavar='N', type=str, nargs='+',
 
 args = parser.parse_args()
 course = args.course[0]
-
-print course
-print args.users
 
 user_dicts = []
 for user in args.users:
@@ -41,12 +52,10 @@ queue_service.create_queue("sendusers")
 
 table_service.create_table("roomtable")
 
-print course
 rooms = table_service.query_entities("roomtable", "PartitionKey eq '{0}'".format(course))
 
 occupied_spots = 0
 for room in rooms:
-    print room
     occupied_spots += room.users
 
 room_to_users = dict((room.RowKey, room.users) for room in rooms)
@@ -56,13 +65,27 @@ available_space = len(rooms) * 6.0
 response_dict = {}
 
 for user in user_dicts:
-    if get_loadfactor() > 0.8:
-        new_room = new_room()
-        table_service.insert_entity('roomtable', new_room)
-        room_to_users[new_room['RowKey']] = 0
+    print("Load factor: {0}".format(get_loadfactor()))
+    if get_loadfactor() > 0.7:
+        n_room = new_room()
+        print "Creating new room..."
+        print (n_room)
+        table_service.insert_entity('roomtable', n_room)
+        available_space += 6.0
+        room_to_users[n_room['RowKey']] = 0
+
     room_key = min(room_to_users, key=room_to_users.get)
     response_dict[user['id']] = room_key
     room_to_users[room_key] += 1
+    occupied_spots += 1
 
-print '{0}'.format(response_dict)
-messages = queue_service.put_message('sendusers', '{0}'.format(response_dict))
+print(response_dict)
+messages = queue_service.put_message('sendusers', str(response_dict))
+
+
+rooms = table_service.query_entities("roomtable", "PartitionKey eq '{0}'".format(course))
+
+for row_key in room_to_users.keys():
+    row = table_service.get_entity('roomtable', str(course), str(row_key))
+    row.users += 1
+    table_service.update_entity('roomtable', str(course), str(row_key), row)

@@ -1,1 +1,2 @@
-python match_rooms.py ee40 "{'id':'23432'}"
+python match_rooms.py ee40 "{'id':'23632'}" "{'id':'33432'}" 
+#python match_rooms.py ee40 "{'id':'23632'}" "{'id':'33432'}" "{'id':'23432'}" "{'id':'23439'}" "{'id':'23409'}" "{'id':'23429'}" "{'id':'22409'}"
